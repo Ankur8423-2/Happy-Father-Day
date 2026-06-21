@@ -128,7 +128,14 @@
     .s1-emoji {
       font-size: 5rem;
       animation: bounce 1.4s infinite ease-in-out;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
+    }
+
+    .s1-bengali {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: #6f2b00;
+      margin-bottom: 14px;
+      font-weight: 600;
     }
 
     @keyframes bounce {
@@ -418,9 +425,9 @@
 <!-- ===== SCREEN 1: ARE YOU READY? ===== -->
 <div class="screen active" id="screen1">
   <div class="s1-emoji">🎈</div>
+  <div class="s1-bengali">এই পাপা</div>
   <div class="s1-question">Are you Ready<br>for the Surprise? 🎁</div>
   <div class="btn-group">
-    <button class="btn-ready btn-yes" onclick="goTo('screen2')">Yes 😄</button>
     <button class="btn-ready btn-yess" onclick="goTo('screen2')">Yessssssss 🎉</button>
   </div>
 </div>
