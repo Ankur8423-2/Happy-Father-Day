@@ -87,6 +87,39 @@
       pointer-events: all;
     }
 
+    #screen4 {
+      background: linear-gradient(140deg, #fff2d6 0%, #ffd8e5 100%);
+      text-align: center;
+    }
+
+    .final-card {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 34px 24px;
+      max-width: 620px;
+      width: 95%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.14);
+    }
+
+    .final-title {
+      font-family: 'Dancing Script', cursive;
+      color: #c0392b;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin-bottom: 10px;
+    }
+
+    .final-line {
+      color: #5d1a00;
+      font-size: clamp(1.1rem, 3.2vw, 1.5rem);
+      line-height: 1.8;
+      background: #fff3e0;
+      border-radius: 14px;
+      border: 1px solid #ffd9b3;
+      padding: 14px 16px;
+      margin-top: 8px;
+    }
+
     /* ===================== SCREEN 1 — READY? ===================== */
     #screen1 {
       background: linear-gradient(135deg, #fff8e7 0%, #ffe0b2 100%);
@@ -243,14 +276,25 @@
       font-weight: 600;
     }
 
+    #photo-wrapper {
+      width: 100%;
+      max-width: 370px;
+      margin: 0 auto;
+      padding: 10px;
+      border: 4px solid #ffffff;
+      border-radius: 0;
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
     .photo-frame {
       width: 100%;
-      max-height: 420px;
+      max-height: 280px;
       object-fit: contain;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      border-radius: 0;
+      box-shadow: none;
       display: block;
-      background: #fff8f0;
+      background: transparent;
       transition: opacity 0.5s ease;
     }
 
@@ -313,6 +357,18 @@
       font-size: 1.8rem;
       margin-top: 16px;
       animation: heartbeat 1s infinite ease-in-out;
+    }
+
+    .final-message {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #fff3e0;
+      color: #5d1a00;
+      font-size: clamp(1rem, 2.8vw, 1.2rem);
+      line-height: 1.7;
+      border: 1px solid #ffd9b3;
+      display: none;
     }
 
     @keyframes heartbeat {
@@ -415,6 +471,19 @@
     <div class="heart-end" id="heart-end" style="display:none;">
       The End — Love you forever, Papa ❤️
     </div>
+
+    <div class="final-message" id="final-message">
+      আমার হাসির কারণ তুমিই, বাবা। শুভ বাবা দিবস!
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN 4: FINAL MESSAGE ===== -->
+<div class="screen" id="screen4">
+  <div class="final-card fade-in">
+    <div class="final-title">Happy Father's Day, Papa 💛</div>
+    <div class="final-line">আমার হাসির কারণ তুমিই, বাবা। শুভ বাবা দিবস!</div>
+    <div class="heart-end" style="margin-top: 16px;">❤️</div>
   </div>
 </div>
 
@@ -506,10 +575,16 @@
     document.getElementById('btn-next').textContent = current === photos.length - 1 ? '🎉 Done!' : 'Next →';
     document.getElementById('btn-next').disabled = false;
     document.getElementById('heart-end').style.display = current === photos.length - 1 ? 'block' : 'none';
+    document.getElementById('final-message').style.display = 'none';
     buildDots();
   }
 
   function changePhoto(dir) {
+    if (dir === 1 && current === photos.length - 1) {
+      goTo('screen4');
+      return;
+    }
+
     const next = current + dir;
     if (next < 0 || next >= photos.length) return;
     current = next;
